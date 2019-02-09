@@ -47,77 +47,79 @@
     year: 1977,
    },
 ]
-
+ 
+ 
 
    function getRandomQuote(array) {
-      //generate a random number
-      var randomNumber = Math.floor(Math.random() * quotes.length) + 1;
+     //generate a random number
+     var randomNumber = Math.floor(Math.random() * quotes.length);
       //loop through the length of the array
       for(i = 0; i < array.length; i++) {
-         //random number quote
-         var randomQuote = array[randomNumber];
-      }
+      //random number quote
+     var randomQuote = array[randomNumber];
+     }
       //return a random quote
-      return randomQuote;
+       return randomQuote;
     }
 
 
    function printQuote() {
      //call the function and store the result in variable
-       var quote = getRandomQuote(quotes);
-   
+     var quote = getRandomQuote(quotes);
+     //call the function to change bg color  
+     random_bg_color();
+
      //put string together and asign it to variable
-        var stringOfQuoteProperties = "<p class='quote'>";
-        stringOfQuoteProperties += quote.quote;
-        stringOfQuoteProperties += "</p> <p class='source'>";
-        stringOfQuoteProperties += quote.source;
+     var stringOfQuoteProperties = "<p class='quote'>";
+       stringOfQuoteProperties += quote.quote;
+       stringOfQuoteProperties += "</p> <p class='source'>";
+       stringOfQuoteProperties += quote.source;
 
 
-     //check if citation property is present. If yes, display it on the screen
+      //check if citation property is present. If yes, display it on the screen
       if (typeof quote.citation != "undefined") {
-        stringOfQuoteProperties += "<span class='citation'>";
-        stringOfQuoteProperties += quote.citation;
-        stringOfQuoteProperties += "</span>";
+       stringOfQuoteProperties += "<span class='citation'>";
+       stringOfQuoteProperties += quote.citation;
+       stringOfQuoteProperties += "</span>";
       };
-     //check if year property is present. If yes, display it on the screen
+      //check if year property is present. If yes, display it on the screen
       if (typeof quote.year != "undefined") {
-        stringOfQuoteProperties += "<span class='year'>";
-        stringOfQuoteProperties += quote.year;
-        stringOfQuoteProperties += "</span>";
+       stringOfQuoteProperties += "<span class='year'>";
+       stringOfQuoteProperties += quote.year;
+       stringOfQuoteProperties += "</span>";
       };
-     //check if category property is present. If yes, display it on the scrreen
+      //check if category property is present. If yes, display it on the scrreen
       if (typeof quote.category != "undefined") {
-        stringOfQuoteProperties += "<span class='category'>";
-        stringOfQuoteProperties += quote.category;
-        stringOfQuoteProperties += "</span>";
+       stringOfQuoteProperties += "<span class='category'>";
+       stringOfQuoteProperties += quote.category;
+       stringOfQuoteProperties += "</span>";
       };
-      stringOfQuoteProperties += "</p>"
+       stringOfQuoteProperties += "</p>"
 
-     //asign the created string to HTML 
+       //asign the created string to HTML 
        document.getElementById("quote-box").innerHTML = stringOfQuoteProperties;
-      }
+    }
 
 
     //reusable function to create a random color
     function createColor() {
-     return Math.floor(Math.random() * 256);
+      return Math.floor(Math.random() * 256);
     }
 
     //random bg color generator
     function random_bg_color() {
-  
-    var red = createColor();
-    var green = createColor();
-    var blue = createColor();
-    var bgColor = "rgb(" + red + "," + green + "," + blue + ")";
-    
-    document.body.style.background = bgColor;
-   }
 
-   //change quote every 20 sec
+      var red = createColor();
+      var green = createColor();
+      var blue = createColor();
+      var bgColor = "rgb(" + red + "," + green + "," + blue + ")";
+    
+      document.body.style.background = bgColor;
+    }
+
+    //change quote every 20 sec
     setInterval('printQuote()', 20000);
-   //change bg color every 20 sec
-    setInterval('random_bg_color()', 20000);
+   
 
     document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
